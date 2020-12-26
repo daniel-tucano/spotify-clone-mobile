@@ -1,0 +1,9 @@
+spotify-clone-mobile-mongo-secret.yaml
+spotify-clone-mobile-secret.yaml
+important_commands.txt
+node_modules/
+build
+.env
+globalConfig.json
+spotify-clone-mobile-firebase-adminsdk-ne2jo-2225883157.json
+package-lock.json

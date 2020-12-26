@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spotify-clone-mobile-backend
+  labels:
+    name: spotify-clone-mobile-backend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      name: spotify-clone-mobile-backend
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        name: spotify-clone-mobile-backend
+    spec:
+      containers:
+      - image: registry.hub.docker.com/daanrsantiago/spotify-clone-mobile-backend:latest
+        imagePullPolicy: Always
+        name: spotify-clone-mobile-backend-container
+        ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP
+        volumeMounts:
+            - name: spotify-clone-mobile-backend-secret-files
+              mountPath: /app/firebase
+        env:
+          - name: MONGODB_USER
+            valueFrom:
+              secretKeyRef:
+                name: spotify-clone-mobile-mongo-secret
+                key: username
+          - name: MONGODB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: spotify-clone-mobile-mongo-secret
+                key: password
+          - name: NODE_ENV
+            value: production
+          - name: NODE_PORT
+            value: '80'
+          - name: MONGO_URL
+            value: mongodb+srv://spotifycloneheadlessservice.default.svc.cluster.local/spotifyClone?ssl=false&replicaSet=rs0&readPreference=secondaryPreferred&authSource=admin
+          - name: GOOGLE_APPLICATION_CREDENTIALS
+            value: ./spotify-clone-mobile-firebase-adminsdk-ne2jo-2225883157.json
+      volumes:
+        - name: spotify-clone-mobile-backend-secret-files
+          secret:
+            secretName: spotify-clone-mobile-backend-secret

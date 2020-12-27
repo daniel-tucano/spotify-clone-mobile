@@ -16,6 +16,7 @@ export interface SongType extends Document {
     releaseDate: Date
     postedDate: Date
     contentType: string
+    objID: string
 }
 
 const SongMongoSchema = new mongoose.Schema({
@@ -70,6 +71,10 @@ const SongMongoSchema = new mongoose.Schema({
         required: true,
     },
     contentType: {
+        type: String,
+        required: true,
+    },
+    objID: {
         type: String,
         required: true,
     },

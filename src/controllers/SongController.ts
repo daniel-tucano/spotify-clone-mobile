@@ -79,11 +79,20 @@ module.exports = {
     },
 
     async destroy(req: Request, res: Response) {
+        const { objID }: { objID?: boolean } = req.params
+
         // Reading the resource current value
-        let song = await Song.findById(req.params.id, null, { lean: true })
+        let song
+        if (objID) {
+            song = await Song.findOne({ objID: req.params.id }, null, {
+                lean: true,
+            })
+        } else {
+            song = await Song.findById(req.params.id, null, { lean: true })
+        }
 
         // Checks if the song exists
-        if (!song) return res.status(404).send('AIRFOIL NOT FOUND')
+        if (!song) return res.status(404).send('SONG NOT FOUND')
 
         // Checks if the operation is authorized
         if (req.decodedIdToken?.uid !== song.creator.uid)
@@ -92,7 +101,7 @@ module.exports = {
                 .send('CLIENT NOT AUTHORIZED TO PERFORM OPERATION')
 
         // If it is authorized, perform the operation and return its result
-        await Song.findByIdAndDelete(req.params.id)
+        await Song.findByIdAndDelete((song as SongType).id)
 
         return res.status(200).send()
     },

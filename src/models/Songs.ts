@@ -4,7 +4,7 @@ export interface SongType extends Document {
     title: string
     album?: string
     artist: string
-    genre?: string
+    genres?: string[]
     duration: number
     creator: {
         uid: string
@@ -32,8 +32,8 @@ const SongMongoSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    genre: {
-        type: String,
+    genres: {
+        type: [String],
         required: false,
     },
     duration: {

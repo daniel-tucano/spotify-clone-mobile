@@ -6,12 +6,12 @@ const SongController = require('./controllers/SongController')
 const PlaylistController = require('./controllers/PlaylistController')
 const UserController = require('./controllers/UserController')
 
-// Airfoil Private Routes
+// Songs Private Routes
 privateRoutes.post('/songs', SongController.store)
 privateRoutes.put('/songs/:id', SongController.update)
 privateRoutes.delete('/songs/:id', SongController.destroy)
 
-// Runs Private Routes
+// Playlists Private Routes
 privateRoutes.post('/playlists', PlaylistController.store)
 privateRoutes.put('/playlists/:id', PlaylistController.update)
 privateRoutes.delete('/playlists/:id', PlaylistController.destroy)

@@ -1,9 +1,10 @@
 import mongoose, { Document } from 'mongoose'
 
 export interface SongType extends Document {
-    name: string
-    album: string
+    title: string
+    album?: string
     artist: string
+    genre?: string
     duration: number
     creator: {
         uid: string
@@ -14,20 +15,25 @@ export interface SongType extends Document {
     coverImgUrl?: string
     releaseDate: Date
     postedDate: Date
+    contentType: string
 }
 
 const SongMongoSchema = new mongoose.Schema({
-    name: {
+    title: {
         type: String,
         required: true,
     },
     album: {
         type: String,
-        required: true,
+        required: false,
     },
     artist: {
         type: String,
         required: true,
+    },
+    genre: {
+        type: String,
+        required: false,
     },
     duration: {
         type: Number,
@@ -61,6 +67,10 @@ const SongMongoSchema = new mongoose.Schema({
     },
     postedDate: {
         type: Date,
+        required: true,
+    },
+    contentType: {
+        type: String,
         required: true,
     },
 })

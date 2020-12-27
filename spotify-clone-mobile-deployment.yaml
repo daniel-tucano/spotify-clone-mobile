@@ -48,8 +48,8 @@ spec:
           - name: MONGO_URL
             value: mongodb+srv://spotifycloneheadlessservice.default.svc.cluster.local/spotifyClone?ssl=false&replicaSet=rs0&readPreference=secondaryPreferred&authSource=admin
           - name: GOOGLE_APPLICATION_CREDENTIALS
-            value: ./spotify-clone-mobile-firebase-adminsdk-ne2jo-2225883157.json
+            value: ./firebase/spotify-clone-mobile-firebase-adminsdk-ne2jo-2225883157.json
       volumes:
         - name: spotify-clone-mobile-backend-secret-files
           secret:
-            secretName: spotify-clone-mobile-backend-secret
+            secretName: spotify-clone-mobile-secret

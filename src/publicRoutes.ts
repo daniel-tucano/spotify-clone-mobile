@@ -7,7 +7,7 @@ const UserController = require('./controllers/UserController')
 
 // Root route
 publicRoutes.get('/', (_req, res) => {
-    res.status(200).send('welcome to aerodb REST API!')
+    res.status(200).send('welcome to spotify clone mobile REST API!')
 })
 
 // Song Public Routes

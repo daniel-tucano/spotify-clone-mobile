@@ -17,7 +17,7 @@ export interface UserType extends Document {
         secondsPlayed?: number
     }
     favoriteSongs: string[]
-    playlist: string[]
+    playlists: string[]
     joinDate: Date
 }
 
@@ -75,7 +75,7 @@ const UserMongoSchema = new mongoose.Schema({
         type: [String],
         required: true,
     },
-    playlist: {
+    playlists: {
         type: [String],
         required: true,
     },

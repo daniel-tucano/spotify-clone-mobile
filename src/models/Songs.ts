@@ -13,7 +13,7 @@ export interface SongType extends Document {
     }
     url: string
     coverImgUrl?: string
-    releaseDate: Date
+    releaseDate?: Date
     postedDate: Date
     contentType: string
     objID: string
@@ -64,7 +64,7 @@ const SongMongoSchema = new mongoose.Schema({
     },
     releaseDate: {
         type: Date,
-        required: true,
+        required: false,
     },
     postedDate: {
         type: Date,

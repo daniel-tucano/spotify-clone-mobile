@@ -42,6 +42,9 @@ module.exports = {
                 .send('CLIENT NOT AUTHORIZED TO PERFORM OPERATION')
         // Adds current server date to postedDate field
         req.body.postedDate = new Date()
+        if (req.body.releaseDate) {
+            req.body.releaseDate = new Date(req.body.releaseDate)
+        }
         // Add song to database
         const song = await Song.create(req.body)
         // Return value added

@@ -13,23 +13,23 @@ pipeline {
             }
         }
 
-        stage('Constroi a imagem de teste da aplicação no docker') {
-            steps {
-                script {
-                    def app = docker.build('daanrsantiago/spotify-clone-mobile-backend-test', '-f Dockerfile.test .')
-                }
-            }
-        }
+        // stage('Constroi a imagem de teste da aplicação no docker') {
+        //     steps {
+        //         script {
+        //             def app = docker.build('daanrsantiago/spotify-clone-mobile-backend-test', '-f Dockerfile.test .')
+        //         }
+        //     }
+        // }
 
-        stage('Realiza os teste unitários') {
-            // Idealmente aqui seriam realizados testes, mas este respositório não esta usando
-            // nenhum framework de testes atualmente, então apenas utilizaremos um echo 'testes passaram com sucesso'
-            steps {
-                script {
-                    sh 'docker run --rm daanrsantiago/spotify-clone-mobile-backend-test'
-                }
-            }
-        }
+        // stage('Realiza os teste unitários') {
+        //     // Idealmente aqui seriam realizados testes, mas este respositório não esta usando
+        //     // nenhum framework de testes atualmente, então apenas utilizaremos um echo 'testes passaram com sucesso'
+        //     steps {
+        //         script {
+        //             sh 'docker run --rm daanrsantiago/spotify-clone-mobile-backend-test'
+        //         }
+        //     }
+        // }
 
         stage('Da um Push na imagem para o Docker Hub') {
             steps {

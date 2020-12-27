@@ -46,7 +46,6 @@ const SongMongoSchema = new mongoose.Schema({
             type: String,
             required: true,
         },
-        required: true,
     },
     url: {
         type: String,

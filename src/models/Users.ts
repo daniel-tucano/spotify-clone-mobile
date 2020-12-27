@@ -70,7 +70,6 @@ const UserMongoSchema = new mongoose.Schema({
             type: Number,
             required: false,
         },
-        required: true,
     },
     favoriteSongs: {
         type: [String],

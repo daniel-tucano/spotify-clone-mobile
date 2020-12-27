@@ -19,6 +19,7 @@ publicRoutes.get('/playlists', PlaylistController.index)
 publicRoutes.get('/playlists/:id', PlaylistController.show)
 
 // Users Public Routes
+privateRoutes.post('/users', UserController.store)
 publicRoutes.get('/users', UserController.index)
 publicRoutes.get('/users/:id', UserController.show)
 

@@ -17,7 +17,6 @@ privateRoutes.put('/playlists/:id', PlaylistController.update)
 privateRoutes.delete('/playlists/:id', PlaylistController.destroy)
 
 // Users Private Routes
-privateRoutes.post('/users', UserController.store)
 privateRoutes.put('/users/:id', UserController.update)
 privateRoutes.delete('/users/:id', UserController.destroy)
 privateRoutes.post(

@@ -2,6 +2,7 @@ import Song, { SongType } from '../models/Songs'
 import lodash from 'lodash'
 import { Request, Response } from 'express'
 import { paginate } from '../functions/paginate'
+import Users from '../models/Users'
 
 module.exports = {
     async index(req: Request, res: Response) {
@@ -40,8 +41,17 @@ module.exports = {
             return res
                 .status(401)
                 .send('CLIENT NOT AUTHORIZED TO PERFORM OPERATION')
+
+        const user = await Users.findOne({ uid: req.body.creator.uid }, null, {
+            lean: true,
+        })
+
+        req.body.creator.name = user.name
+        req.body.creator.username = user.username
+
         // Adds current server date to postedDate field
         req.body.postedDate = new Date()
+
         if (req.body.releaseDate) {
             req.body.releaseDate = new Date(req.body.releaseDate)
         }
